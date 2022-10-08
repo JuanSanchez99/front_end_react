@@ -2,6 +2,9 @@ import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { addPerson, updatePerson } from "../features/personSlide";
 
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+
 export default function PersonForm({ person, setPerson }) {
   const params = useParams();
   const navigate = useNavigate();
@@ -15,51 +18,68 @@ export default function PersonForm({ person, setPerson }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (params.id) {
-      dispatch(updatePerson(person))
-    }else{
+      dispatch(updatePerson(person));
+    } else {
       dispatch(addPerson(person));
     }
-    
+
     navigate("/");
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <form onSubmit={handleSubmit} style={{ padding: "20px" }}>
+      <TextField
         name="document_id"
         type="text"
-        placeholder="Document ID"
+        label="Document ID"
         value={person && person.document_id}
         onChange={handleChange}
+        variant="standard"
+        margin="normal"
+        fullWidth
       />
-      <input
+      <TextField
         name="document_type"
         type="text"
-        placeholder="Document type"
+        label="Document type"
         value={person && person.document_type}
         onChange={handleChange}
+        variant="standard"
+        margin="normal"
+        fullWidth
       />
-      <input
+      <TextField
         name="name"
         type="text"
-        placeholder="Name"
+        label="Name"
         value={person && person.name}
         onChange={handleChange}
+        variant="standard"
+        margin="normal"
+        fullWidth
       />
-      <input
+      <TextField
         name="lastname"
         type="text"
-        placeholder="Last name"
+        label="Last name"
         value={person && person.lastname}
         onChange={handleChange}
+        variant="standard"
+        margin="normal"
+        fullWidth
       />
-      <input
+      <TextField
         name="hobbies"
         type="text"
-        placeholder="Hobbies"
+        label="Hobbies"
         value={person && person.hobbies}
         onChange={handleChange}
+        variant="standard"
+        margin="normal"
+        fullWidth
       />
-      <button>Save</button>
+      <Button type="submit" variant="contained">
+        Send
+      </Button>
     </form>
   );
 }
