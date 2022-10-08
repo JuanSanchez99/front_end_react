@@ -1,13 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 import './index.css';
-import App from './App';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
+import Index from './pages';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Index />,
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
