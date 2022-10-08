@@ -4,25 +4,28 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
+import Container from '@mui/material/Container';
 import "./index.css";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
-import Index from "./pages";
+import Index from "./pages/index";
+import Person from "./pages/person";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Index />,
-  },
+  { path: "/", element: <Index /> },
+  { path: "/new-person", element: <Person /> },
+  { path: "/edit-person/:id", element: <Person /> },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <Container>
+        <RouterProvider router={router} />
+      </Container>
     </Provider>
   </React.StrictMode>
 );
