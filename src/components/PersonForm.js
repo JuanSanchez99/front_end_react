@@ -1,9 +1,12 @@
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { addPerson, updatePerson } from "../features/personSlide";
+import { addNewPerson, updatePerson } from "../features/personSlide";
 
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
 
 export default function PersonForm({ person, setPerson }) {
   const params = useParams();
@@ -15,12 +18,12 @@ export default function PersonForm({ person, setPerson }) {
       [e.target.name]: e.target.value,
     });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (params.id) {
-      dispatch(updatePerson(person));
+      await dispatch(updatePerson(person));
     } else {
-      dispatch(addPerson(person));
+      await dispatch(addNewPerson(person));
     }
 
     navigate("/");
@@ -37,16 +40,19 @@ export default function PersonForm({ person, setPerson }) {
         margin="normal"
         fullWidth
       />
-      <TextField
-        name="document_type"
-        type="text"
+      <InputLabel id="demo-simple-select-label">Document type</InputLabel>
+      <Select
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
         label="Document type"
-        value={person && person.document_type}
+        name="document_type"
         onChange={handleChange}
-        variant="standard"
-        margin="normal"
         fullWidth
-      />
+        value={person && person.document_type}
+      >
+        <MenuItem value={'CC'}>Cedula De ciudadania</MenuItem>
+        <MenuItem value={'TI'}>Tarjeta de identidad</MenuItem>
+      </Select>
       <TextField
         name="name"
         type="text"

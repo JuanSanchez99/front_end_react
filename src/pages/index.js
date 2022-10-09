@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PeopleTable from "../components/PeopleTable";
+import { useDispatch } from "react-redux";
+import { fetchPeople } from "../features/personSlide";
 
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
@@ -9,6 +11,11 @@ import Toolbar from "@mui/material/Toolbar";
 
 export default function Index() {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchPeople())
+  }, [])
   return (
     <>
       <AppBar position="static">

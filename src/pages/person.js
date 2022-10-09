@@ -20,7 +20,7 @@ export default function Person() {
   });
   useEffect(() => {
     if (params.id) {
-      setPerson(people.find((item) => item.id == params.id));
+      setPerson(people.people.find((item) => item.id == params.id));
     }
   }, []);
   return (

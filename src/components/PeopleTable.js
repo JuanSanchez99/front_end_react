@@ -37,7 +37,7 @@ export default function PeopleTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {people.map((row) => (
+          {people.people.map((row) => (
             <TableRow
               key={row.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -51,8 +51,8 @@ export default function PeopleTable() {
               <TableCell>{row.hobbies}</TableCell>
               <TableCell>
                 <ButtonGroup>
-                  <Button key="edit" onClick={()=> navigate(`/edit-person/${row.id}`)}>Edit</Button>
-                  <Button key="delete" color="error" onClick={()=> handleDelete(row.id)}>Delete</Button>
+                  <Button key="edit" onClick={() => navigate(`/edit-person/${row.id}`)}>Edit</Button>
+                  <Button key="delete" color="error" onClick={() => handleDelete(row.id)}>Delete</Button>
                 </ButtonGroup>
               </TableCell>
             </TableRow>
